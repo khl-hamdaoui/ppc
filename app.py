@@ -246,27 +246,35 @@ if st.sidebar.button("Predict Swelling Pressure"):
 st.title("Swelling Pressure Prediction App")
 
 # Display model information
+# Display model information
 st.header("Model and Data Information")
 st.markdown("""
-- **Model**: CatBoost Regressor
-- **Algorithm**: Gradient Boosting
-- **Dataset Size**: 288 samples
-- **Training/Testing Split**: 70% training, 30% testing
+### Model Details
+- **Model Type**: The model used in this application is a **CatBoost Regressor**, which is an implementation of gradient boosting on decision trees. It is well-suited for regression tasks, especially with tabular data, where relationships between features may be complex.
+- **Algorithm**: The underlying algorithm, **Gradient Boosting**, iteratively builds an ensemble of decision trees, with each tree trained to correct the errors made by the previous ones. This approach enhances the model's accuracy and generalization ability.
 
-### Model Accuracy
-- **Training Performance**:
-  - Average RMSE: 0.0000
-  - Average R² Score: 0.9995
-  - Average MAE: 0.0023
+### Dataset Information
+- **Dataset Size**: The dataset consists of **288 samples**, which include a variety of soil properties relevant to predicting swelling pressure.
+- **Features Used**: The model utilizes 9 input features that describe the characteristics of the soil, such as water content, liquid limit, plasticity index, sand and clay content, among others.
+- **Training/Testing Split**: The dataset was split into **70% for training** (202 samples) and **30% for testing** (86 samples). The training set is used to fit the model, while the testing set evaluates its performance on unseen data.
 
-- **Testing Performance**:
-  - Average RMSE: 0.0009
-  - Average R² Score: 0.9659
-  - Average MAE: 0.0183
+### Model Performance Metrics
+#### Training Performance
+- **Root Mean Square Error (RMSE)**: **0.0000**. This indicates that the model fits the training data almost perfectly, with negligible prediction errors.
+- **R² Score**: **0.9995**. The high R² value suggests that the model explains nearly all the variability in the training data.
+- **Mean Absolute Error (MAE)**: **0.0023**. This low value confirms the model's accuracy in predicting the swelling pressure on the training set.
 
-### Geotechnical Relevance
-Swelling pressure is the potential pressure exerted by clayey soils, especially when they absorb water and undergo volumetric expansion. Accurate prediction of this parameter is essential in geotechnical engineering for designing foundations, retaining structures, and other civil engineering applications involving expansive soils.
+#### Testing Performance
+- **Root Mean Square Error (RMSE)**: **0.0009**. The small RMSE on the testing set indicates that the model maintains high accuracy when predicting on new data.
+- **R² Score**: **0.9659**. This R² value implies that the model still captures a substantial portion of the variability in the testing data, although there is a slight reduction compared to the training set.
+- **Mean Absolute Error (MAE)**: **0.0183**. The low MAE value for testing indicates that the model’s predictions remain close to the actual values, even for new data.
+
+### Geotechnical Relevance of Swelling Pressure Prediction
+- **Swelling Pressure**: This is a critical parameter for clayey soils, which tend to swell when they absorb water. Swelling pressure can exert significant forces on structures, leading to potential damage if not properly accounted for.
+- **Importance in Engineering**: Predicting swelling pressure is essential for **foundation design**, **retaining wall stability**, **road construction**, and other civil engineering projects where expansive soils may be present.
+- **Influencing Factors**: Several soil properties, including **water content (wi)**, **dry density (γd)**, **liquid limit (LL)**, **plasticity index (PI)**, **sand content**, and **clay content (C)**, impact the swelling behavior. The model uses these features to make accurate predictions, aiding in risk assessment and engineering decision-making.
 """)
+
 
 st.header("Parametric Study")
 params = {
@@ -349,3 +357,8 @@ with col2:
             st.error(f"Parametric study failed: {e}")
     else:
         st.info("Click 'Perform Study' to see the results.")
+# Credit Section
+st.header("Credits")
+st.markdown("""
+This application was developed by **PhD student Hamdaoui Khaled** from the **Lab of Geomaterials, University of Chlef, Algeria**.
+""")
